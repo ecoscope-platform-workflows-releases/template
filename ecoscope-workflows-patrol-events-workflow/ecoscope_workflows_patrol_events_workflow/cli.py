@@ -1,6 +1,6 @@
 # [generated]
 # by = { compiler = "ecoscope-workflows-core", version = "9999" }
-# from-spec-sha256 = "896b6c401e72d1c5c6ea5b21330115b51275e381038ca7a1582e7cff20de7b07"
+# from-spec-sha256 = "bf7b6de51904baf56f10905682ceac7066af1815d8fc4d11a4bb289bc3847f17"
 
 
 from io import TextIOWrapper
