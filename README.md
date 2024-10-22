@@ -1,2 +1,2 @@
-# patrol-events
-A dashboard for visualizing patrol events.
+# events
+A dashboard for visualizing events.
