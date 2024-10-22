@@ -1,9 +1,9 @@
 # [generated]
 # by = { compiler = "ecoscope-workflows-core", version = "9999" }
-# from-spec-sha256 = "bf7b6de51904baf56f10905682ceac7066af1815d8fc4d11a4bb289bc3847f17"
+# from-spec-sha256 = "602895479ce13588b865dd77be4b0686de430ab27a5da4670758dc477a46de03"
 
 [project]
-name = "ecoscope-workflows-patrol-events-workflow"
+name = "ecoscope-workflows-events-workflow"
 channels = [
     "https://repo.prefix.dev/ecoscope-workflows/",
     "conda-forge",
@@ -27,11 +27,11 @@ version = "*"
 version = "*"
 
 [dependencies.ecoscope-workflows-core]
-version = "==v0.0.6"
+version = "==v0.0.7"
 channel = "https://repo.prefix.dev/ecoscope-workflows/"
 
 [dependencies.ecoscope-workflows-ext-ecoscope]
-version = "==v0.0.6"
+version = "==v0.0.7"
 channel = "https://repo.prefix.dev/ecoscope-workflows/"
 
 [feature.test.dependencies.pytest]
@@ -39,6 +39,7 @@ version = "*"
 
 [feature.test.tasks]
 test-all = "python -m pytest -v tests"
+test-app-params = "python -m pytest -v tests/test_app.py -k 'params or formdata'"
 test-app-async-mock-io = "python -m pytest -v tests/test_app.py -k 'async and mock-io'"
 test-app-sequential-mock-io = "python -m pytest -v tests/test_app.py -k 'sequential and mock-io'"
 test-cli-async-mock-io = "python -m pytest -v tests/test_cli.py -k 'async and mock-io'"
@@ -55,9 +56,9 @@ features = [
 solve-group = "default"
 
 [tasks]
-docker-build = "docker buildx build -t ecoscope-workflows-patrol-events-workflow ."
+docker-build = "docker buildx build -t ecoscope-workflows-events-workflow ."
 
-[pypi-dependencies.ecoscope-workflows-patrol-events-workflow]
+[pypi-dependencies.ecoscope-workflows-events-workflow]
 path = "."
 editable = true
 
