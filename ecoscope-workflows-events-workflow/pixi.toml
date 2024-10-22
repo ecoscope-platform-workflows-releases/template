@@ -61,3 +61,6 @@ docker-build = "docker buildx build -t ecoscope-workflows-events-workflow ."
 [pypi-dependencies.ecoscope-workflows-events-workflow]
 path = "."
 editable = true
+
+[system-requirements]
+linux="4.4.0"
