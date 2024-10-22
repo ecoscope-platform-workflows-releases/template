@@ -1,5 +1,5 @@
 resource "google_cloud_run_v2_service" "default" {
-  name     = "workflow-patrol-events-${var.env}"
+  name     = "workflow-events-${var.env}"
   project  = var.project_id
   location = var.location
   ingress  = var.ingress
