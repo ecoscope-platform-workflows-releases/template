@@ -1,21 +1,23 @@
 # [generated]
 # by = { compiler = "ecoscope-workflows-core", version = "9999" }
-# from-spec-sha256 = "bf7b6de51904baf56f10905682ceac7066af1815d8fc4d11a4bb289bc3847f17"
+# from-spec-sha256 = "602895479ce13588b865dd77be4b0686de430ab27a5da4670758dc477a46de03"
 
 
 from pathlib import Path
+from typing import get_args
 
 import pytest
 import ruamel.yaml
 from fastapi.testclient import TestClient
 
 from ecoscope_workflows_core.testing import TestCase
-from ecoscope_workflows_patrol_events_workflow.app import app
+from ecoscope_workflows_events_workflow.app import app
+from ecoscope_workflows_events_workflow.formdata import FormData
 
 
 ARTIFACTS = Path(__file__).parent.parent
 TEST_CASES_YAML = ARTIFACTS.parent / "test-cases.yaml"
-ENTRYPOINT = "ecoscope-workflows-patrol-events-workflow"
+ENTRYPOINT = "ecoscope-workflows-events-workflow"
 
 
 def pytest_addoption(parser: pytest.Parser):
@@ -34,6 +36,32 @@ def case(pytestconfig: pytest.Config, test_cases_yaml: Path) -> TestCase:
     all_cases = yaml.load(test_cases_yaml.read_text())
     assert case_name in all_cases, f"{case_name =} not found in {test_cases_yaml =}"
     return TestCase(**all_cases[case_name])
+
+
+@pytest.fixture(scope="session")
+def formdata(case: TestCase) -> dict:
+    """From a flat set of paramaters, create nested representation to reflect how the RJSF
+    formdata would be structured. This is used for testing the formdata validation endpoint,
+    and allows us to test the formdata validation endpoint without having to manually create
+    the nested structure.
+    """
+    formdata: dict[str, dict] = {}
+    aliased_annotations = {
+        v.alias: v.annotation for v in FormData.model_fields.values() if v.alias
+    }
+    task_groups = {
+        k: list(get_args(v)[0].model_fields) for k, v in aliased_annotations.items()
+    }
+    for k, v in case.params.items():
+        if k in FormData.model_fields:
+            formdata[k] = v
+        else:
+            group = next(g for g in task_groups if k in task_groups[g])
+            if group in formdata:
+                formdata[group].update({k: v})
+            else:
+                formdata[group] = {k: v}
+    return formdata
 
 
 @pytest.fixture(params=["async", "sequential"])
