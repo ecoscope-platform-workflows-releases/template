@@ -12,5 +12,5 @@ inputs = {
   project_id   = "ecoscope-poc-421907"
   env          = "dev"
   network_name = "ecoscope-dev"
-  service_url  = "patrol-events.dev.ecoscope.io"
+  service_url  = "events.dev.ecoscope.io"
 }
