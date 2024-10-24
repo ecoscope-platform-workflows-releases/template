@@ -65,3 +65,8 @@ variable "service_url" {
 variable "workflows_services_custom_audience" {
   type = string
 }
+
+variable "workflow_id" {
+  type        = string
+  description = "The id of the workflow service; must be identical with the `id` in the spec.yaml workflow definition."
+}
