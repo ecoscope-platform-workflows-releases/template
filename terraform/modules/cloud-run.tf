@@ -4,6 +4,10 @@ resource "google_cloud_run_v2_service" "default" {
   location = var.location
   ingress  = var.ingress
 
+  custom_audiences = [
+    var.workflows_services_custom_audience
+  ]
+
   template {
     service_account = google_service_account.default.email
 
