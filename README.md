@@ -1,2 +1,2 @@
-# events
-A dashboard for visualizing events.
+# template
+A template for ecoscope platform workflows releases.
