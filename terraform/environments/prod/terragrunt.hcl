@@ -9,8 +9,9 @@ terraform {
 inputs = {
   image = "" # Override at pipeline level
 
-  project_id   = "ecoscope-prod"
-  env          = "prod"
-  network_name = "ecoscope-prod"
-  service_url  = "events.ecoscope.io"
+  project_id                         = "ecoscope-prod"
+  env                                = "prod"
+  network_name                       = "ecoscope-prod"
+  service_url                        = "events.ecoscope.io"
+  workflows_services_custom_audience = "ecoscope-workflows-services-prod"
 }
