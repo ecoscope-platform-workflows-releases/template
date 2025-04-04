@@ -16,7 +16,6 @@ This repository contains a template for creating custom workflows. Follow the se
 
    [tasks.pytest-snapshot-update]
    cmd = "./dev/rmrf-snapshots.sh && ./dev/pytest.sh template 'app' 'sequential' --snapshot-update" #TODO: update "template" with your project name
-
    ```
 
 2. **Update the workflow ID**
@@ -54,6 +53,41 @@ This repository contains a template for creating custom workflows. Follow the se
    ```bash
    pixi run pytest-cli
    ```
+
+
+## Development Steps
+
+1. **Make your changes in [ecoscope-workflow](https://github.com/wildlife-dynamics/ecoscope-workflows)**
+
+
+2. **Build the ecoscope-workflow packages**
+   
+   ```bash
+   pixi run build-release
+   ```
+
+3. **Test the changes in your workflow**
+   
+4. **Publish your changes**
+   After merge your changes in ecoscope-workflows, bump the version by
+
+   ```bash
+   git tag v0.0.2
+   git push origin --tags
+   ```
+   Check if the version has been successfully pushed to prefix in [Github](https://github.com/wildlife-dynamics/ecoscope-workflows/actions/workflows/publish.yml)
+
+   Then update the version in pixi.toml
+   ```toml
+   [dependencies.ecoscope-workflows-core]
+   channel = 'https://repo.prefix.dev/ecoscope-workflows/'
+   version = '0.0.2'
+
+   [dependencies.ecoscope-workflows-ext-ecoscope]
+   channel = 'https://repo.prefix.dev/ecoscope-workflows/'
+   version = '0.0.2'
+   ```
+
 
 ## Project Structure
 
