@@ -26,7 +26,7 @@ cmd = './dev/recompile.sh --update'
 cmd = './dev/curl-invoke-docker.sh'
 
 [tasks.pytest-cli]
-cmd = "./dev/pytest.sh template 'cli'" #TODO: update "template" with your project name
+cmd = "./dev/pytest.sh template 'cli' sequential" #TODO: update "template" with your project name
 
 [tasks.pytest-snapshot-update]
 cmd = "./dev/rmrf-snapshots.sh && ./dev/pytest.sh template 'app' 'sequential' --snapshot-update" #TODO: update "template" with your project name

@@ -52,7 +52,7 @@ This repository contains a template for creating custom workflows. Follow the se
    
    Run the following command to test your workflow:
    ```bash
-   pixi run pytest-cli sequential
+   pixi run pytest-cli
    ```
 
 ## Project Structure
