@@ -1,6 +1,6 @@
 #!/bin/bash
 
-example=$1
+example=$(echo $1 | tr '_' '-')
 api=$2
 mode=$3
 flags="${@:4}"
