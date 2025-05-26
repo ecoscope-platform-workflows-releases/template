@@ -2,8 +2,8 @@ id: template # TODO: Your Workflow ID
 requirements:
   - name: ecoscope-workflows-core
     version: "*"
-    channel: file:///tmp/ecoscope-workflows/release/artifacts/
-  - name: ecoscope-workflows-ext-ecoscope
+    channel: https://repo.prefix.dev/ecoscope-workflows/
+  - name: ecoscope-workflows-ext-template
     version: "*"
     channel: file:///tmp/ecoscope-workflows/release/artifacts/
 
@@ -22,6 +22,11 @@ workflow:
   - name: Calculate Task
     id: calculator
     task: apply_arithmetic_operation
+  - name: Print Value
+    id: print_value
+    task: print_template_result
+    partial:
+      data: ${{ workflow.calculator.return }}
   - name: Create Single Value Widgets
     id: sv_widgets
     task: create_single_value_widget_single_view
@@ -30,7 +35,7 @@ workflow:
       decimal_places: 0
       data: ${{ workflow.calculator.return }}
   - name: Create An Example Dashboard
-    id: patrol_dashboard
+    id: template_dashboard
     task: gather_dashboard
     partial:
       details: ${{ workflow.workflow_details.return}}

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-example=$(echo $1 | tr '_' '-')
+workflow=$(echo $1 | tr '_' '-')
 api=$2
 mode=$3
 flags="${@:4}"
 
-manifest_path=ecoscope-workflows-${example}-workflow/pixi.toml
+manifest_path=workflows/${workflow}/ecoscope-workflows-${workflow}-workflow/pixi.toml
 pixi_task=test-${api}-${mode}-mock-io
 
 # update workflow env because ecoscope-workflows-* versions may have
