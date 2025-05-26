@@ -1,5 +1,5 @@
-from ._print import print_template_result
+from ._example import add_one_thousand
 
 __all__ = [
-    "print_template_result",
+    "add_one_thousand",
 ]

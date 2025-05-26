@@ -11,7 +11,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/adwaita-icon-theme-48.0-unix_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.6.1-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.0-py312h178313f_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.1-py312h178313f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiosignal-1.3.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/anyio-4.9.0-pyh29332c3_0.conda
@@ -242,11 +242,11 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.22.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstandard-0.23.0-py312h66e93f0_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
-      - conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev7+g6bec0d1.d20250526-pyh4616a5c_0.conda
+      - conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev9+g913c5cc.d20250526-pyh4616a5c_0.conda
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/adwaita-icon-theme-48.0-unix_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.6.1-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.0-py312h998013c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.1-py312h998013c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiosignal-1.3.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/anyio-4.9.0-pyh29332c3_0.conda
@@ -444,7 +444,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.22.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstandard-0.23.0-py312hea69d52_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-h6491c7d_2.conda
-      - conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev7+g6bec0d1.d20250526-pyh4616a5c_0.conda
+      - conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev9+g913c5cc.d20250526-pyh4616a5c_0.conda
   default:
     channels:
     - url: https://repo.prefix.dev/ecoscope-workflows/
@@ -456,7 +456,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/adwaita-icon-theme-48.0-unix_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.6.1-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.0-py312h178313f_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.1-py312h178313f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiosignal-1.3.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/anyio-4.9.0-pyh29332c3_0.conda
@@ -701,7 +701,7 @@ environments:
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/adwaita-icon-theme-48.0-unix_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.6.1-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.0-py312h998013c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.1-py312h998013c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiosignal-1.3.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.7.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/anyio-4.9.0-pyh29332c3_0.conda
@@ -952,9 +952,9 @@ packages:
   license_family: PSF
   size: 19750
   timestamp: 1741775303303
-- conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.0-py312h178313f_0.conda
-  sha256: ab6e4cba31d0262ac8572f69440b7d0a026767f8181961a76d67d03bac5ed9b8
-  md5: 38104806db2d2f7b097d1db941cc776a
+- conda: https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.12.1-py312h178313f_0.conda
+  sha256: bce94cf1bec0449ebea37d77763bf2709650bcc3467ef401093566a224b6bc28
+  md5: 6ccd7f5b254e5e0f357be3ebf1e24a98
   depends:
   - __glibc >=2.17,<3.0.a0
   - aiohappyeyeballs >=2.5.0
@@ -969,11 +969,11 @@ packages:
   - yarl >=1.17.0,<2.0
   license: MIT AND Apache-2.0
   license_family: Apache
-  size: 953318
-  timestamp: 1748255606138
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.0-py312h998013c_0.conda
-  sha256: 00bf33448d8cab74b1499694fce8ae81dc621cb461803628f3780e9d81de3739
-  md5: 906dbbd2d2d5e0a53d64671c5cb41125
+  size: 969188
+  timestamp: 1748285521782
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/aiohttp-3.12.1-py312h998013c_0.conda
+  sha256: 9a1b2b9c82e899ab612d041428f183b75d2cf19a33b5f5667c99d7645a9cb85c
+  md5: 51e56f4b2db04358e2a6fadd534ecb0b
   depends:
   - __osx >=11.0
   - aiohappyeyeballs >=2.5.0
@@ -988,8 +988,8 @@ packages:
   - yarl >=1.17.0,<2.0
   license: MIT AND Apache-2.0
   license_family: Apache
-  size: 925299
-  timestamp: 1748255324704
+  size: 944166
+  timestamp: 1748285196029
 - conda: https://conda.anaconda.org/conda-forge/noarch/aiosignal-1.3.2-pyhd8ed1ab_0.conda
   sha256: 7de8ced1918bbdadecf8e1c1c68237fe5709c097bd9e0d254f4cad118f4345d0
   md5: 1a3981115a398535dbe3f6d5faae3d36
@@ -1520,18 +1520,18 @@ packages:
   license: BSD-3-Clause
   size: 65434
   timestamp: 1748266276999
-- conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev7+g6bec0d1.d20250526-pyh4616a5c_0.conda
+- conda: /tmp/ecoscope-workflows/release/artifacts/noarch/ecoscope-workflows-ext-template-0.1.dev9+g913c5cc.d20250526-pyh4616a5c_0.conda
   subdir: noarch
-  sha256: 3dee29cd29399bd60f9fafae0973f75ad50406b15e5030e038018391f0b56363
-  md5: 7795a13b832ea57e1ddea45aa218cd9f
+  sha256: 36f91340580f28afc28aaf987c9d91ee415ea7147f6d18229e312f3bc4e53207
+  md5: 672e18b5a9d53cd49e6238676f663837
   depends:
   - python
   - ecoscope-workflows-core
   - python
   channel: file:///tmp/ecoscope-workflows/release/artifacts
   license: BSD-3-Clause
-  size: 8679
-  timestamp: 1748282566061
+  size: 8681
+  timestamp: 1748290063395
 - conda: https://conda.anaconda.org/conda-forge/linux-64/epoxy-1.5.10-h166bdaf_1.tar.bz2
   sha256: 1e58ee2ed0f4699be202f23d49b9644b499836230da7dd5b2f63e6766acff89e
   md5: a089d06164afd2d511347d3f87214e0b
