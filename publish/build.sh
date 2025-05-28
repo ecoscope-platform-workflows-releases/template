@@ -13,15 +13,14 @@ echo "Building recipes: ${RECIPES[@]}"
 pixi clean cache --yes
 rm -rf ./workflows/template/ecoscope-workflows-template-workflow/.pixi
 
-rm -rf /tmp/ecoscope-workflows/release/artifacts
-mkdir -p /tmp/ecoscope-workflows/release/artifacts
+rm -rf /tmp/ecoscope-workflows-custom/release/artifacts
+mkdir -p /tmp/ecoscope-workflows-custom/release/artifacts
 
 for rec in "${RECIPES[@]}"; do
     echo "Building $rec"
     rattler-build build \
     --recipe $(pwd)/publish/recipes/${rec}.yaml \
-    --output-dir /tmp/ecoscope-workflows/release/artifacts \
-    --channel file:///tmp/ecoscope-workflows/release/artifacts \
+    --output-dir /tmp/ecoscope-workflows-custom/release/artifacts \
     --channel https://prefix.dev/ecoscope-workflows \
     --channel conda-forge
 done
