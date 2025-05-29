@@ -82,7 +82,7 @@ Now you can use these tasks in your workflow
 ./publish/build.sh
 ```
 
-3. Publish your task package again
+3. Publish your task package
 ```bash
 ./publish/push.sh
 ```

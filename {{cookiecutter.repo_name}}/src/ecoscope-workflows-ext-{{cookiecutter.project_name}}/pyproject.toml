@@ -45,6 +45,9 @@ channels = [
 
 platforms = ["linux-64", "osx-arm64"]
 
+[tool.pixi.pypi-dependencies]
+ecoscope-workflows-ext-{{cookiecutter.project_name}} = { path = ".", editable = true }
+
 [tool.pixi.dependencies]
 # restating dependencies from ecoscope-workflows.core to ensure they are included
 # todo: ensure exact 1:1 synchronization with ecoscope-workflows.core
