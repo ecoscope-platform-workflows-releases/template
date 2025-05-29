@@ -7,6 +7,7 @@ requirements:
     version: "*"
     channel: file:///tmp/ecoscope-workflows-custom/release/artifacts/
 
+{% raw %}
 workflow:
   - name: Set Workflow Details
     id: workflow_details
@@ -43,3 +44,5 @@ workflow:
         - ${{ workflow.sv_widgets.return }}
       time_range: ${{ workflow.time_range.return}}
       groupers: ${{ workflow.groupers.return }}
+
+{% endraw %}

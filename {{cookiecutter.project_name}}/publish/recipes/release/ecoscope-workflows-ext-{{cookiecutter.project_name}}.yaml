@@ -2,16 +2,18 @@ context:
   name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
   version: 0.0.0 # todo
 
+{% raw %}
 package:
   name: ${{ name }}
   version: ${{ version }}
+{% endraw %}
 
 source:
   path: ../../..  # get back to root of repo
 
 build:
   noarch: python
-  script: SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} python -m pip install src/ecoscope-workflows-ext-{{cookiecutter.project_name}} -vv --no-deps
+  script: SETUPTOOLS_SCM_PRETEND_VERSION={{ '${{ version }}' }} python -m pip install src/ecoscope-workflows-ext-{{cookiecutter.project_name}} -vv --no-deps
   number: 0
 
 requirements:
