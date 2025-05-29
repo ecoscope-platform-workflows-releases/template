@@ -38,16 +38,13 @@ root = "../.."
 
 [tool.pixi.project]
 channels = [
-    # "https://prefix.dev/ecoscope-workflows-console", # our custom channel, you can add your own
-    "https://prefix.dev/ecoscope-workflows",         # the main ecoscope-workflows channel
+    # "https://prefix.dev/ecoscope-workflows-custom", # our custom channel, you can add your own
+    "https://prefix.dev/ecoscope-workflows", # the main ecoscope-workflows channel
     "conda-forge",
 ]
 
 platforms = ["linux-64", "osx-arm64"]
-[tool.pixi.pypi-dependencies]
-# vendoring via symlink, so pixi is not confused by the pixi configuration in actual ecoscope-workflows-core
-"ecoscope-workflows-core" = { path = "./vendor/ecoscope-workflows-core", editable = true }
-"ecoscope-workflows-ext-ecoscope" = { path = ".", editable = true }
+
 [tool.pixi.dependencies]
 # restating dependencies from ecoscope-workflows.core to ensure they are included
 # todo: ensure exact 1:1 synchronization with ecoscope-workflows.core

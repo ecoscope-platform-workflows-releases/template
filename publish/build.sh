@@ -11,7 +11,6 @@ echo "HATCH_VCS_VERSION=$HATCH_VCS_VERSION"
 echo "Building recipes: ${RECIPES[@]}"
 
 pixi clean cache --yes
-rm -rf ./workflows/template/ecoscope-workflows-template-workflow/.pixi
 
 rm -rf /tmp/ecoscope-workflows-custom/release/artifacts
 mkdir -p /tmp/ecoscope-workflows-custom/release/artifacts

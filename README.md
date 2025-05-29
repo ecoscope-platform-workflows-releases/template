@@ -2,100 +2,119 @@
 
 This repository contains a template for creating custom workflows. Follow the setup steps below to get started.
 
-## Setup Steps
 
-1. **Update the project name**
-   
-   Open the `pixi.toml` file and update the `name` field in the `[project]` section:
-   ```toml
-   [project]
-   name = "template" #TODO: update "template" with your project name
+## Project Structure
 
-   [tasks.pytest-cli]
-   cmd = "./dev/pytest.sh template 'cli'" #TODO: update "template" with your project name
+- `src/ecoscope-workflows-ext-template`: Contains custom tasks
+- `workflows`: Contains all the workflows that are set up to use custom tasks
+- `pixi.toml`: Contains project configuration including dependencies
+- `dev`: Contains scripts required for development
+- `publish`: Contains scripts required to build and publish the task package
 
-   [tasks.pytest-snapshot-update]
-   cmd = "./dev/rmrf-snapshots.sh && ./dev/pytest.sh template 'app' 'sequential' --snapshot-update" #TODO: update "template" with your project name
-   ```
+## Task Development
+The tasks are defined under `src/ecoscope-workflows-ext-<org>/ecoscope_workflows_ext_<org>/tasks`. Here's an example of a task
 
-2. **Update the workflow ID**
-   
-   Open the `spec.yaml` file and update the `id` field:
-   ```yaml
-   id: your-workflow-id
-   ```
+```python
+@task
+def add_one_thousand(
+    value: Annotated[float, Field(default=0, description="value to add")] = 0
+) -> float:
+    return value+1000
+```
+Annotate your function with `@task` and input parameters with `Annotated[float, Field(default=0, description="value to add")] ` to indicate the type and the description of the input. 
 
-3. **Install pixi**
-   
-   If you don't have pixi installed, install it by following the instructions at the [official documentation](https://pixi.sh/latest/).
+Note: make sure to include your tasks to `__init__.py` to register it as a ecoscope-workflow task.
 
-4. **Compile the workflow**
-   
-   Run the following command to compile your workflow:
+You can also add other dependecies in `src/ecoscope-workflows-ext-<org>/pyproject.toml` under [tool.pixi.dependencies] section
+
+
+## Build the Task Package
+
+1. Update the build recipe under `publish/recipes/release` including the required package
+2. Add the recipe to `publish/build.sh`
+3. Run
+```bash
+./publish/build.sh
+```
+4. Update the pixi environment by 
+```bash
+pixi update
+```
+
+Now you can use these tasks in your workflow
+
+
+## Workflow Development
+1. Update your workflow, including
+- spec.yaml: a list of tasks and their relationships
+- param.yaml: default configuration
+- layout.json: update the default dashboard layout if your workflow generates a dashboard
+
+2. Run the following command to compile your workflow:
    ```bash
-   pixi run compile
+   ./dev/recompile.sh <workflow-id> --install
    ```
    
    This will generate a folder called `ecoscope-workflows-<your-workflow-id>-workflow` with your compiled workflow.
 
-5. **Generate your workflow result snapshot**
-   
-   Run the following command to generate your workflow result snapshot:
+   Later on if you update the workflow spec you can recompile it using:
    ```bash
-   pixi run pytest-snapshot-update
+   ./dev/recompile <workflow-id> --update
    ```
 
-   This will generate a folder called `__results_snapshots__` with an example output.
-
-6. **Test your workflow**
-   
-   Run the following command to test your workflow:
+3. Test your workflow with this command:
    ```bash
-   pixi run pytest-cli
+   cd workflows/<workflow-id>/ecoscope-workflows-<workflow-id>-workflow
+   pixi run python -m ecoscope_workflows_<workflow-id>_workflow.cli run --config-file ../param.yaml --execution-mode sequential --mock-io
    ```
-
-
-## Development Steps
-
-1. **Make your changes in [ecoscope-workflow](https://github.com/wildlife-dynamics/ecoscope-workflows)**
-
-
-2. **Build the ecoscope-workflow packages**
    
-   ```bash
-   pixi run build-release
-   ```
+## Publish Your Changes
 
-3. **Test the changes in your workflow**
-   
-4. **Publish your changes**
-   After merge your changes in ecoscope-workflows, bump the version by
+1. Bump the git commit version by
 
    ```bash
    git tag v0.0.2
    git push origin --tags
    ```
-   Check if the version has been successfully pushed to prefix in [Github](https://github.com/wildlife-dynamics/ecoscope-workflows/actions/workflows/publish.yml)
 
-   Then update the version in pixi.toml
+2. Build your task package again
+```bash
+./publish/build.sh
+```
+
+3. Publish your task package again
+```bash
+./publish/push.sh
+```
+
+4. Check if your package exists on prefix.dev
+
+5. Update the version in pixi.toml
    ```toml
-   [dependencies.ecoscope-workflows-core]
-   channel = 'https://repo.prefix.dev/ecoscope-workflows/'
-   version = '0.0.2'
-
-   [dependencies.ecoscope-workflows-ext-ecoscope]
-   channel = 'https://repo.prefix.dev/ecoscope-workflows/'
+   [dependencies.ecoscope-workflows-ext-<org>]
+   channel = 'https://repo.prefix.dev/ecoscope-workflows-custom/'
    version = '0.0.2'
    ```
 
+6. Update the version in spec.yaml
+   ```toml
+  - name: ecoscope-workflows-ext-<org>
+    version: '0.0.2'
+    channel: https://repo.prefix.dev/ecoscope-workflows-custom/
+   ```
 
-## Project Structure
+## Troubleshoot
 
-- `pixi.toml`: Contains project configuration including dependencies
-- `spec.yaml`: Contains workflow specifications
-- `test-cases.yaml`: Contains test cases for your workflow
-- `layout.json`: Contains the dashboard layout settings
-- `dev`: Contains scripts required for development
+1. *Task not Registered*
+   Clean up pixi caches by
+   ```bash
+   pixi clean cache
+   rm -rf .pixi
+   rm -rf pixi.lock
+   pixi update
+   ```
+   And compile again
+
 
 ## Additional Resources
 
