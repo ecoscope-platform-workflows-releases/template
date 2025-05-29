@@ -1,6 +1,6 @@
 context:
-  name: ecoscope-workflows-ext-template
-  version: ${{ env.get("HATCH_VCS_VERSION") }}
+  name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
+  version: 0.0.0 # todo
 
 package:
   name: ${{ name }}
@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  script: SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} python -m pip install src/ecoscope-workflows-ext-template -vv --no-deps
+  script: SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} python -m pip install src/ecoscope-workflows-ext-{{cookiecutter.project_name}} -vv --no-deps
   number: 0
 
 requirements:
@@ -29,4 +29,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - yun-wu
+    - {{cookiecutter.maintainer_name}}

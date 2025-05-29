@@ -1,9 +1,9 @@
 #!/bin/bash
 
 RECIPES=(
-    "release/ecoscope-workflows-ext-template"
+    "release/ecoscope-workflows-ext-{{cookiecutter.project_name}}"
 )
-project_root=$(pwd)/src/ecoscope-workflows-ext-template
+project_root=$(pwd)/src/ecoscope-workflows-ext-{{cookiecutter.project_name}}
 export HATCH_VCS_VERSION=$(cd $project_root && hatch version)
 echo "HATCH_VCS_VERSION=$HATCH_VCS_VERSION"
 

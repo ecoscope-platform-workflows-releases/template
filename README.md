@@ -5,14 +5,14 @@ This repository contains a template for creating custom workflows. Follow the se
 
 ## Project Structure
 
-- `src/ecoscope-workflows-ext-template`: Contains custom tasks
+- `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}`: Contains custom tasks
 - `workflows`: Contains all the workflows that are set up to use custom tasks
 - `pixi.toml`: Contains project configuration including dependencies
 - `dev`: Contains scripts required for development
 - `publish`: Contains scripts required to build and publish the task package
 
 ## Task Development
-The tasks are defined under `src/ecoscope-workflows-ext-<org>/ecoscope_workflows_ext_<org>/tasks`. Here's an example of a task
+The tasks are defined under `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/ecoscope_workflows_ext_{{cookiecutter.project_name}}/tasks`. Here's an example of a task
 
 ```python
 @task
@@ -25,7 +25,7 @@ Annotate your function with `@task` and input parameters with `Annotated[float, 
 
 Note: make sure to include your tasks to `__init__.py` to register it as a ecoscope-workflow task.
 
-You can also add other dependecies in `src/ecoscope-workflows-ext-<org>/pyproject.toml` under [tool.pixi.dependencies] section
+You can also add other dependecies in `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/pyproject.toml` under [tool.pixi.dependencies] section
 
 
 ## Build the Task Package
@@ -52,20 +52,20 @@ Now you can use these tasks in your workflow
 
 2. Run the following command to compile your workflow:
    ```bash
-   ./dev/recompile.sh <workflow-id> --install
+   ./dev/recompile.sh {{cookiecutter.workflow_name}} --install
    ```
    
-   This will generate a folder called `ecoscope-workflows-<your-workflow-id>-workflow` with your compiled workflow.
+   This will generate a folder called `ecoscope-workflows-{{cookiecutter.workflow_name}}-workflow` with your compiled workflow.
 
    Later on if you update the workflow spec you can recompile it using:
    ```bash
-   ./dev/recompile <workflow-id> --update
+   ./dev/recompile {{cookiecutter.workflow_name}} --update
    ```
 
 3. Test your workflow with this command:
    ```bash
-   cd workflows/<workflow-id>/ecoscope-workflows-<workflow-id>-workflow
-   pixi run python -m ecoscope_workflows_<workflow-id>_workflow.cli run --config-file ../param.yaml --execution-mode sequential --mock-io
+   cd workflows/{{cookiecutter.workflow_name}}/ecoscope-workflows-{{cookiecutter.workflow_name}}-workflow
+   pixi run ecoscope-workflows-{{cookiecutter.workflow_name}} run --config-file ../param.yaml --execution-mode sequential --mock-io
    ```
    
 ## Publish Your Changes
@@ -91,14 +91,14 @@ Now you can use these tasks in your workflow
 
 5. Update the version in pixi.toml
    ```toml
-   [dependencies.ecoscope-workflows-ext-<org>]
+   [dependencies.ecoscope-workflows-ext-{{cookiecutter.project_name}}]
    channel = 'https://repo.prefix.dev/ecoscope-workflows-custom/'
    version = '0.0.2'
    ```
 
 6. Update the version in spec.yaml
    ```toml
-  - name: ecoscope-workflows-ext-<org>
+  - name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
     version: '0.0.2'
     channel: https://repo.prefix.dev/ecoscope-workflows-custom/
    ```
