@@ -38,6 +38,15 @@ compile = { features = [
 [tasks.build-release]
 cmd = './publish/build.sh'
 
+[tasks.pytest-310]
+cmd = './dev/pytest-task.sh 310'
+
+[tasks.pytest-311]
+cmd = './dev/pytest-task.sh 311'
+
+[tasks.pytest-312]
+cmd = './dev/pytest-task.sh 312'
+
 [tasks.compile-{{cookiecutter.workflow_name}}]
 cmd = './dev/recompile.sh {{cookiecutter.workflow_name}} --install'
 depends-on = ["build-release"]
