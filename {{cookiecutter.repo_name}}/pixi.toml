@@ -1,6 +1,8 @@
 [project]
 name = "{{cookiecutter.repo_name}}"
 channels = [
+    "file:///tmp/ecoscope-workflows/release/artifacts/",
+    "file:///tmp/ecoscope-workflows-custom/release/artifacts/",
     'https://repo.prefix.dev/ecoscope-workflows/',
     'https://repo.prefix.dev/ecoscope-workflows-custom/',
     'conda-forge',
@@ -13,19 +15,14 @@ rattler-build = "*"
 yq = "*"
 hatch = "*"
 
-[dependencies.ecoscope-workflows-core]
-channel = 'https://repo.prefix.dev/ecoscope-workflows/'
-version = '0.2.4.*'
-
 [feature.compile.dependencies]
+ecoscope-workflows-ext-{{cookiecutter.project_name}} = "*"
 
-[feature.compile.dependencies.ecoscope-workflows-core]
-version = "*"
-channel = "https://repo.prefix.dev/ecoscope-workflows/"
-
-[feature.compile.dependencies.ecoscope-workflows-ext-{{cookiecutter.project_name}}]
-version = "*"
-channel = "file:///tmp/ecoscope-workflows-custom/release/artifacts/"
+ecoscope-workflows-core = "0.2.9.*"
+# Here we don't specify the channel on purpose, as we want to use the local channel if it exists,
+# otherwise we fall back to the remote channel.
+# If you want to ensure a specific channel to incorporate your local changes, you can uncomment the line below.
+# ecoscope-workflows-ext-{{cookiecutter.project_name}} = { version = "*", channel = "file:///tmp/ecoscope-workflows-custom/release/artifacts/" }
 
 [environments]
 compile = { features = [
@@ -45,10 +42,10 @@ cmd = './dev/pytest-task.sh 311'
 [tasks.pytest-312]
 cmd = './dev/pytest-task.sh 312'
 
-[tasks.compile-{{cookiecutter.workflow_name}}]
+[feature.compile.tasks.compile-{{cookiecutter.workflow_name}}]
 cmd = './dev/recompile.sh {{cookiecutter.workflow_name}} --install'
 depends-on = ["build-release"]
 
-[tasks.recompile-{{cookiecutter.workflow_name}}]
+[feature.compile.tasks.recompile-{{cookiecutter.workflow_name}}]
 cmd = './dev/recompile.sh {{cookiecutter.workflow_name}} --update'
 depends-on = ["build-release"]

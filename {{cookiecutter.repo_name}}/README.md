@@ -1,6 +1,6 @@
-# Workflow Template Repository
+# Workflow Custom Repository
 
-This repository contains a template for creating custom workflows. Follow the setup steps below to get started.
+This repository contains custom tasks that can be commonly used across workflows. Follow the setup steps below to get started.
 
 
 ## Project Structure
@@ -27,22 +27,28 @@ Note: make sure to include your tasks to `__init__.py` to register it as a ecosc
 
 You can also add other dependecies in `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/pyproject.toml` under [tool.pixi.dependencies] section
 
+Unittests are under `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/tests` and can be tested it by
+```bash
+pixi run pytest-310
+```
+or pytest-311/pytest-312 depending on your desired python version.
+
+
 
 ## Build the Task Package
 
-1. Update the build recipe under `publish/recipes/release` including the required package
-2. Add the recipe to `publish/build.sh`
-3. Run
-```bash
-./publish/build.sh
-```
-4. Update the pixi environment by 
-```bash
-pixi update
-```
+1. Update the build recipe under `publish/recipes/release` to include extra dependencies
+2. Run
+   ```bash
+   pixi run build-release
+   ```
 
-Now you can use these tasks in your workflow
-
+Now you can use these tasks in your workflow by including the local channel
+   ```toml
+   [dependencies.ecoscope-workflows-ext-{{cookiecutter.project_name}}]
+   channel = 'file:///tmp/ecoscope-workflows-custom/release/artifacts'
+   version = '*'
+   ```
 
 ## Workflow Development
 1. Update your workflow, including
@@ -52,21 +58,27 @@ Now you can use these tasks in your workflow
 
 2. Run the following command to compile your workflow:
    ```bash
-   ./dev/recompile.sh {{cookiecutter.workflow_name}} --install
+   pixi run compile-{{cookiecutter.workflow_name}}
    ```
    
    This will generate a folder called `ecoscope-workflows-{{cookiecutter.workflow_name}}-workflow` with your compiled workflow.
 
    Later on if you update the workflow spec you can recompile it using:
    ```bash
-   ./dev/recompile {{cookiecutter.workflow_name}} --update
+   pixi run recompile-{{cookiecutter.workflow_name}}
    ```
 
-3. Test your workflow with this command:
+3. Test your workflow. First set up your output directory by
+   ```bash
+   mkdir -p /tmp/workflows/{{cookiecutter.project_name}}/{{cookiecutter.workflow_name}}/output
+   export ECOSCOPE_WORKFLOWS_RESULTS=file:///tmp/workflows/{{cookiecutter.project_name}}/{{cookiecutter.workflow_name}}/output
+   ```
+   Then run your workflow by
    ```bash
    cd workflows/{{cookiecutter.workflow_name}}/ecoscope-workflows-{{cookiecutter.workflow_name}}-workflow
-   pixi run ecoscope-workflows-{{cookiecutter.workflow_name}} run --config-file ../param.yaml --execution-mode sequential --mock-io
+   pixi run ecoscope-workflows-{{cookiecutter.workflow_name}}-workflow run --config-file ../param.yaml --execution-mode sequential --mock-io
    ```
+   You can find the results in your output folder in `/tmp/workflows/{{cookiecutter.project_name}}/{{cookiecutter.workflow_name}}/output/result.json`
    
 ## Publish Your Changes
 
@@ -78,14 +90,14 @@ Now you can use these tasks in your workflow
    ```
 
 2. Build your task package again
-```bash
-./publish/build.sh
-```
+   ```bash
+   pixi run build-release
+   ```
 
 3. Publish your task package
-```bash
-./publish/push.sh
-```
+   ```bash
+   ./publish/push.sh
+   ```
 
 4. Check if your package exists on prefix.dev
 
@@ -98,14 +110,16 @@ Now you can use these tasks in your workflow
 
 6. Update the version in spec.yaml
    ```toml
-  - name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
-    version: '0.0.2'
-    channel: https://repo.prefix.dev/ecoscope-workflows-custom/
+   - name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
+     version: '0.0.2'
+     channel: https://repo.prefix.dev/ecoscope-workflows-custom/
    ```
+
+7. Push your workflow changes to github.
 
 ## Troubleshoot
 
-1. *Task not Registered*
+1. Task not Registered
    Clean up pixi caches by
    ```bash
    pixi clean cache

@@ -1,4 +1,4 @@
-id: {{cookiecutter.workflow_name}}
+id: {{cookiecutter.workflow_name | replace('-', '_') }}
 requirements:
   - name: ecoscope-workflows-core
     version: "*"

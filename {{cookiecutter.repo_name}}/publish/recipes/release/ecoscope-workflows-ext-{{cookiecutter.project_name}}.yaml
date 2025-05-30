@@ -1,6 +1,6 @@
 context:
   name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
-  version: 0.0.0 # todo
+  version: {% raw %}${{ env.get("HATCH_VCS_VERSION") }}{% endraw %}
 
 {% raw %}
 package:
