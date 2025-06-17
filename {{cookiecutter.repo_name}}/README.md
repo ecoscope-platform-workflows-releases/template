@@ -25,7 +25,7 @@ Annotate your function with `@task` and input parameters with `Annotated[float, 
 
 Note: make sure to include your tasks to `__init__.py` to register it as a ecoscope-workflow task.
 
-You can also add other dependecies in `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/pyproject.toml` under [tool.pixi.dependencies] section
+You can also add other dependencies in `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/pyproject.toml` under [tool.pixi.dependencies] section
 
 Unittests are under `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/tests` and can be tested it by
 ```bash
@@ -114,7 +114,7 @@ or pytest-311/pytest-312 depending on your desired python version.
    ```
 
 6. Update the version in spec.yaml
-   ```toml
+   ```yaml
    - name: ecoscope-workflows-ext-{{cookiecutter.project_name}}
      version: '0.0.2'
      channel: https://repo.prefix.dev/ecoscope-workflows-custom/
