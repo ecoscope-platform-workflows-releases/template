@@ -9,3 +9,5 @@ cookiecutter https://github.com/ecoscope-platform-workflows-releases/template
 Follow the prompt to input your project name and the first workflow name and you can explore the generated repository.
 
 You can then publish your repository to github to start collaboration.
+
+NOTE: If your project name has more than one word, please use hyphen(`-`) instead of underscore(`_`)

@@ -1,6 +1,6 @@
 # Workflow Custom Repository
 
-This repository contains custom tasks that can be commonly used across workflows. Follow the setup steps below to get started.
+This repository contains custom tasks and workflows for {{cookiecutter.project_name}}. Follow the setup steps below to get started.
 
 
 ## Project Structure
@@ -12,7 +12,7 @@ This repository contains custom tasks that can be commonly used across workflows
 - `publish`: Contains scripts required to build and publish the task package
 
 ## Task Development
-The tasks are defined under `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/ecoscope_workflows_ext_{{cookiecutter.project_name}}/tasks`. Here's an example of a task
+The tasks are defined under `src/ecoscope-workflows-ext-{{cookiecutter.project_name}}/ecoscope_workflows_ext_{{cookiecutter.project_name | replace('-', '_')}}/tasks`. Here's an example of a task
 
 ```python
 @task

@@ -1,4 +1,4 @@
-from ecoscope_workflows_ext_{{cookiecutter.project_name}}.tasks import (
+from ecoscope_workflows_ext_{{cookiecutter.project_name | replace('-', '_') }}.tasks import (
     add_one_thousand,
 )
 
