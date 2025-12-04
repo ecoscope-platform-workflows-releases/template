@@ -1,3 +1,4 @@
+{% raw %}
 name: Check Linked Issue
 
 on:
@@ -9,3 +10,4 @@ jobs:
     uses: wildlife-dynamics/compose/.github/workflows/check-linked-issue.yaml@main
     with:
       pr_body: ${{ github.event.pull_request.body }}
+{% endraw %}
